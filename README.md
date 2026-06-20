@@ -75,4 +75,6 @@ https://github.com/MarcoChavez1940/disponibilidad-total-challenge.git
 
 La rama principal es `main`. Cada vez que se sube un commit a `main`, Vercel ejecuta automaticamente un nuevo deploy de produccion. Dichos commits solo pueden llegar a `main` a través de un Pull Request.
 
+<img width="767" height="232" alt="Captura de pantalla 2026-06-20 a la(s) 9 53 56 a m" src="https://github.com/user-attachments/assets/bedf509a-9322-46a5-8d69-17a3e10d2746" />
+
 No hay variables de entorno requeridas en este momento. Los archivos `.env*` y `.vercel` estan ignorados por Git para evitar subir secretos o configuracion local.
