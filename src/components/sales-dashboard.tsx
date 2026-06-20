@@ -27,8 +27,8 @@ const storeColumns: Array<{
 }> = [
   { key: "name", label: "Nombre de tienda" },
   { key: "city", label: "Ciudad" },
-  { key: "totalSales", label: "Ventas totales", align: "text-right" },
-  { key: "productsSold", label: "Productos vendidos", align: "text-right" },
+  { key: "totalSales", label: "Ventas totales", align: "text-center" },
+  { key: "productsSold", label: "Productos vendidos", align: "text-center" },
 ];
 
 const productColumns: Array<{
@@ -39,8 +39,8 @@ const productColumns: Array<{
   { key: "sku", label: "SKU" },
   { key: "product", label: "Producto" },
   { key: "category", label: "Categoría" },
-  { key: "unitsSold", label: "Unidades vendidas", align: "text-right" },
-  { key: "totalSale", label: "Venta total", align: "text-right" },
+  { key: "unitsSold", label: "Unidades vendidas", align: "text-center" },
+  { key: "totalSale", label: "Venta total", align: "text-center" },
 ];
 
 function normalize(value: string) {
@@ -417,11 +417,7 @@ export default function SalesDashboard() {
                             key={column.key}
                           >
                             <button
-                              className={`inline-flex items-center gap-2 font-semibold transition hover:text-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-100 ${
-                                column.align === "text-right"
-                                  ? "ml-auto justify-end"
-                                  : ""
-                              }`}
+                              className="inline-flex items-center gap-2 font-semibold transition hover:text-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-100"
                               onClick={() => handleStoreSort(column.key)}
                               type="button"
                             >
@@ -519,10 +515,10 @@ export default function SalesDashboard() {
                           <td className="break-words px-2 py-3 text-zinc-600 sm:px-4">
                             {store.city}
                           </td>
-                          <td className="whitespace-nowrap px-2 py-3 text-right font-medium text-zinc-900 sm:px-4">
+                          <td className="whitespace-nowrap px-2 py-3 text-center font-medium text-zinc-900 sm:px-4">
                             {currencyFormatter.format(store.totalSales)}
                           </td>
-                          <td className="whitespace-nowrap px-2 py-3 text-right text-zinc-700 sm:px-4">
+                          <td className="whitespace-nowrap px-2 py-3 text-center text-zinc-700 sm:px-4">
                             {numberFormatter.format(store.productsSold)}
                           </td>
                         </tr>
@@ -627,11 +623,7 @@ export default function SalesDashboard() {
                               key={column.key}
                             >
                               <button
-                                className={`inline-flex items-center gap-2 font-semibold transition hover:text-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-100 ${
-                                  column.align === "text-right"
-                                    ? "ml-auto justify-end"
-                                    : ""
-                                }`}
+                                className="inline-flex items-center gap-2 font-semibold transition hover:text-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-100"
                                 onClick={() => handleProductSort(column.key)}
                                 type="button"
                               >
@@ -680,10 +672,10 @@ export default function SalesDashboard() {
                           <td className="px-4 py-3 text-zinc-600">
                             {product.category}
                           </td>
-                          <td className="px-4 py-3 text-right text-zinc-700">
+                          <td className="px-4 py-3 text-center text-zinc-700">
                             {numberFormatter.format(product.unitsSold)}
                           </td>
-                          <td className="px-4 py-3 text-right font-medium text-zinc-900">
+                          <td className="px-4 py-3 text-center font-medium text-zinc-900">
                             {currencyFormatter.format(product.totalSale)}
                           </td>
                         </tr>
