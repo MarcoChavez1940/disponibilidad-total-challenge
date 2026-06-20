@@ -6,6 +6,7 @@ import { DashboardHeader } from "@/components/sales-dashboard/dashboard-header";
 import type { DashboardView } from "@/components/sales-dashboard/dashboard-header";
 import { StoreDetailPanel } from "@/components/sales-dashboard/store-detail-panel";
 import { StoreFilters } from "@/components/sales-dashboard/store-filters";
+import { StoreChartsDashboard } from "@/components/sales-dashboard/store-charts-dashboard";
 import { StoresTable } from "@/components/sales-dashboard/stores-table";
 import {
   compareProducts,
@@ -286,9 +287,15 @@ export default function SalesDashboard() {
               sortKey={productSortKey}
             />
           </section>
-        ) : (
+        ) : null}
+
+        {activeDashboard === "products" ? (
           <AllProductsDashboard />
-        )}
+        ) : null}
+
+        {activeDashboard === "charts" ? (
+          <StoreChartsDashboard stores={stores} storesState={storesState} />
+        ) : null}
       </section>
     </main>
   );

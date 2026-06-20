@@ -6,7 +6,7 @@ import {
   numberFormatter,
 } from "@/lib/sales-dashboard-utils";
 
-export type DashboardView = "products" | "stores";
+export type DashboardView = "charts" | "products" | "stores";
 
 type DashboardHeaderProps = {
   activeDashboard: DashboardView;
@@ -15,6 +15,7 @@ type DashboardHeaderProps = {
 };
 
 const dashboardLabels: Record<DashboardView, string> = {
+  charts: "Gráficas y Análisis",
   products: "Tablero de productos",
   stores: "Tablero de tiendas",
 };
@@ -52,24 +53,26 @@ export function DashboardHeader({
 
           {isMenuOpen ? (
             <div className="absolute left-0 top-12 z-30 w-56 overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-lg">
-              {(["stores", "products"] as DashboardView[]).map((dashboard) => {
-                const isActive = dashboard === activeDashboard;
+              {(["stores", "products", "charts"] as DashboardView[]).map(
+                (dashboard) => {
+                  const isActive = dashboard === activeDashboard;
 
-                return (
-                  <button
-                    className={`block w-full px-4 py-3 text-left text-sm font-medium transition hover:bg-zinc-50 ${
-                      isActive
-                        ? "bg-emerald-50 text-emerald-800"
-                        : "text-zinc-700"
-                    }`}
-                    key={dashboard}
-                    onClick={() => handleDashboardChange(dashboard)}
-                    type="button"
-                  >
-                    {dashboardLabels[dashboard]}
-                  </button>
-                );
-              })}
+                  return (
+                    <button
+                      className={`block w-full px-4 py-3 text-left text-sm font-medium transition hover:bg-zinc-50 ${
+                        isActive
+                          ? "bg-emerald-50 text-emerald-800"
+                          : "text-zinc-700"
+                      }`}
+                      key={dashboard}
+                      onClick={() => handleDashboardChange(dashboard)}
+                      type="button"
+                    >
+                      {dashboardLabels[dashboard]}
+                    </button>
+                  );
+                },
+              )}
             </div>
           ) : null}
         </div>
