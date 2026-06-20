@@ -6,7 +6,11 @@ import type { ProductSale, StoreDetail, StoreSummary } from "@/lib/types";
 
 type LoadingState = "idle" | "loading" | "ready" | "error";
 type SortDirection = "asc" | "desc";
-type SortKey = keyof ProductSale;
+type ProductSortKey = keyof ProductSale;
+type StoreSortKey = keyof Pick<
+  StoreSummary,
+  "city" | "name" | "productsSold" | "totalSales"
+>;
 
 const currencyFormatter = new Intl.NumberFormat("es-MX", {
   currency: "MXN",
@@ -16,7 +20,22 @@ const currencyFormatter = new Intl.NumberFormat("es-MX", {
 
 const numberFormatter = new Intl.NumberFormat("es-MX");
 
-const productColumns: Array<{ key: SortKey; label: string; align?: string }> = [
+const storeColumns: Array<{
+  key: StoreSortKey;
+  label: string;
+  align?: string;
+}> = [
+  { key: "name", label: "Nombre de tienda" },
+  { key: "city", label: "Ciudad" },
+  { key: "totalSales", label: "Ventas totales", align: "text-right" },
+  { key: "productsSold", label: "Productos vendidos", align: "text-right" },
+];
+
+const productColumns: Array<{
+  key: ProductSortKey;
+  label: string;
+  align?: string;
+}> = [
   { key: "sku", label: "SKU" },
   { key: "product", label: "Producto" },
   { key: "category", label: "Categoría" },
@@ -31,14 +50,11 @@ function normalize(value: string) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-function compareProducts(
-  first: ProductSale,
-  second: ProductSale,
-  sortKey: SortKey,
+function compareValues(
+  firstValue: number | string,
+  secondValue: number | string,
   direction: SortDirection,
 ) {
-  const firstValue = first[sortKey];
-  const secondValue = second[sortKey];
   const multiplier = direction === "asc" ? 1 : -1;
 
   if (typeof firstValue === "number" && typeof secondValue === "number") {
@@ -51,6 +67,24 @@ function compareProducts(
       sensitivity: "base",
     }) * multiplier
   );
+}
+
+function compareProducts(
+  first: ProductSale,
+  second: ProductSale,
+  sortKey: ProductSortKey,
+  direction: SortDirection,
+) {
+  return compareValues(first[sortKey], second[sortKey], direction);
+}
+
+function compareStores(
+  first: StoreSummary,
+  second: StoreSummary,
+  sortKey: StoreSortKey,
+  direction: SortDirection,
+) {
+  return compareValues(first[sortKey], second[sortKey], direction);
 }
 
 function filterStores(
@@ -79,7 +113,10 @@ export default function SalesDashboard() {
   const [storeQuery, setStoreQuery] = useState("");
   const [regionFilter, setRegionFilter] = useState("all");
   const [productQuery, setProductQuery] = useState("");
-  const [sortKey, setSortKey] = useState<SortKey>("unitsSold");
+  const [storeSortKey, setStoreSortKey] = useState<StoreSortKey>("name");
+  const [storeSortDirection, setStoreSortDirection] =
+    useState<SortDirection>("asc");
+  const [sortKey, setSortKey] = useState<ProductSortKey>("unitsSold");
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
   const [showTopProductsOnly, setShowTopProductsOnly] = useState(true);
 
@@ -162,8 +199,10 @@ export default function SalesDashboard() {
   );
 
   const filteredStores = useMemo(() => {
-    return filterStores(stores, storeQuery, regionFilter);
-  }, [regionFilter, storeQuery, stores]);
+    return filterStores(stores, storeQuery, regionFilter).sort((first, second) =>
+      compareStores(first, second, storeSortKey, storeSortDirection),
+    );
+  }, [regionFilter, storeQuery, storeSortDirection, storeSortKey, stores]);
 
   const topProducts = useMemo(() => {
     if (!selectedStore) {
@@ -203,7 +242,23 @@ export default function SalesDashboard() {
     topProducts,
   ]);
 
-  function handleProductSort(nextSortKey: SortKey) {
+  function handleStoreSort(nextStoreSortKey: StoreSortKey) {
+    if (nextStoreSortKey === storeSortKey) {
+      setStoreSortDirection((current) =>
+        current === "asc" ? "desc" : "asc",
+      );
+      return;
+    }
+
+    setStoreSortKey(nextStoreSortKey);
+    setStoreSortDirection(
+      nextStoreSortKey === "productsSold" || nextStoreSortKey === "totalSales"
+        ? "desc"
+        : "asc",
+    );
+  }
+
+  function handleProductSort(nextSortKey: ProductSortKey) {
     if (nextSortKey === sortKey) {
       setSortDirection((current) => (current === "asc" ? "desc" : "asc"));
       return;
@@ -337,16 +392,55 @@ export default function SalesDashboard() {
                 <table className="w-full border-separate border-spacing-0 text-left text-sm sm:min-w-[640px]">
                   <thead className="bg-zinc-100 text-xs font-semibold uppercase tracking-wide text-zinc-600">
                     <tr>
-                      <th className="sticky left-0 z-20 min-w-[140px] border-r border-zinc-200 bg-zinc-100 px-2 py-3 sm:min-w-[180px] sm:px-4">
-                        Nombre de tienda
-                      </th>
-                      <th className="px-2 py-3 sm:px-4">Ciudad</th>
-                      <th className="px-2 py-3 text-right sm:px-4">
-                        Ventas totales
-                      </th>
-                      <th className="px-2 py-3 text-right sm:px-4">
-                        Productos vendidos
-                      </th>
+                      {storeColumns.map((column) => {
+                        const isActive = column.key === storeSortKey;
+                        const SortIcon =
+                          storeSortDirection === "asc" ? ArrowUp : ArrowDown;
+                        const isSticky = column.key === "name";
+
+                        return (
+                          <th
+                            className={`px-2 py-3 sm:px-4 ${
+                              column.align ?? ""
+                            } ${
+                              isSticky
+                                ? "sticky left-0 z-20 min-w-[140px] border-r border-zinc-200 bg-zinc-100 sm:min-w-[180px]"
+                                : ""
+                            }`}
+                            key={column.key}
+                          >
+                            <button
+                              className={`inline-flex items-center gap-2 font-semibold transition hover:text-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-100 ${
+                                column.align === "text-right"
+                                  ? "ml-auto justify-end"
+                                  : ""
+                              }`}
+                              onClick={() => handleStoreSort(column.key)}
+                              type="button"
+                            >
+                              <span>{column.label}</span>
+                              <span
+                                aria-hidden="true"
+                                className="inline-flex h-4 w-4 items-center justify-center text-zinc-500"
+                              >
+                                {isActive ? (
+                                  <SortIcon
+                                    className="h-4 w-4"
+                                    strokeWidth={2.5}
+                                  />
+                                ) : null}
+                              </span>
+                              {isActive ? (
+                                <span className="sr-only">
+                                  {storeSortDirection === "asc"
+                                    ? "Orden ascendente"
+                                    : "Orden descendente"}
+                                </span>
+                              ) : null}
+                            </button>
+                          </th>
+                        );
+                      })}
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-zinc-200">
