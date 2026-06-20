@@ -50,7 +50,7 @@ export function StoreDetailPanel({
         : null;
 
   return (
-    <section className="min-w-0 rounded-lg border border-zinc-200 bg-white shadow-sm">
+    <section className="w-full min-w-0 max-w-full rounded-lg border border-zinc-200 bg-white shadow-sm">
       <div className="border-b border-zinc-200 px-4 py-3">
         <h2 className="text-lg font-semibold text-zinc-950">
           Detalle de tienda
@@ -66,9 +66,9 @@ export function StoreDetailPanel({
       ) : null}
 
       {detailState === "ready" && selectedStore ? (
-        <div className="flex flex-col gap-5 p-4">
-          <div className="flex flex-col gap-4 border-b border-zinc-200 pb-5 md:flex-row md:items-start md:justify-between">
-            <div>
+        <div className="flex w-full min-w-0 max-w-full flex-col gap-5 p-4">
+          <div className="flex min-w-0 flex-col gap-4 border-b border-zinc-200 pb-5 md:flex-row md:items-start md:justify-between">
+            <div className="min-w-0">
               <h3 className="text-2xl font-semibold text-zinc-950">
                 {selectedStore.name}
               </h3>
@@ -76,7 +76,7 @@ export function StoreDetailPanel({
                 {selectedStore.city} · {selectedStore.region}
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            <div className="grid w-full min-w-0 grid-cols-2 gap-3 sm:grid-cols-3 md:w-auto">
               <PlainMetric
                 label="Ventas"
                 value={currencyFormatter.format(selectedStore.totalSales)}
@@ -110,11 +110,13 @@ export function StoreDetailPanel({
 
 function PlainMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div>
+    <div className="min-w-0">
       <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
         {label}
       </p>
-      <p className="mt-1 text-lg font-semibold text-zinc-950">{value}</p>
+      <p className="mt-1 break-words text-lg font-semibold text-zinc-950">
+        {value}
+      </p>
     </div>
   );
 }

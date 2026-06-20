@@ -242,8 +242,8 @@ export default function SalesDashboard() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f6f7fb] text-zinc-950">
-      <section className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
+    <main className="min-h-screen min-w-0 overflow-x-hidden overscroll-x-none bg-[#f6f7fb] text-zinc-950">
+      <section className="mx-auto flex w-full min-w-0 max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
         <DashboardHeader
           activeDashboard={activeDashboard}
           onDashboardChange={setActiveDashboard}
@@ -251,8 +251,8 @@ export default function SalesDashboard() {
         />
 
         {activeDashboard === "stores" ? (
-          <section className="grid gap-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,1.08fr)]">
-            <div className="flex min-w-0 flex-col gap-4">
+          <section className="grid min-w-0 max-w-full gap-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,1.08fr)]">
+            <div className="flex w-full min-w-0 max-w-full flex-col gap-4">
               <StoreFilters
                 onRegionFilterChange={handleRegionFilterChange}
                 onStoreQueryChange={handleStoreQueryChange}

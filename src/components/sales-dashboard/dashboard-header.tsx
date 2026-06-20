@@ -37,8 +37,8 @@ export function DashboardHeader({
   }
 
   return (
-    <header className="flex flex-col gap-2 border-b border-zinc-200 pb-5 md:flex-row md:items-end md:justify-between">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
+    <header className="flex w-full min-w-0 max-w-full flex-col gap-2 border-b border-zinc-200 pb-5 md:flex-row md:items-end md:justify-between">
+      <div className="flex w-full min-w-0 max-w-full flex-col gap-3 sm:flex-row sm:items-start md:w-auto">
         <div className="relative">
           <button
             aria-expanded={isMenuOpen}
@@ -74,16 +74,16 @@ export function DashboardHeader({
           ) : null}
         </div>
 
-        <div>
+        <div className="min-w-0">
           <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700">
             {dashboardLabels[activeDashboard]}
           </p>
-          <h1 className="mt-1 text-3xl font-semibold text-zinc-950 sm:text-4xl">
+          <h1 className="mt-1 break-words text-3xl font-semibold text-zinc-950 sm:text-4xl">
             Disponibilidad Total
           </h1>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-3">
+      <div className="grid w-full min-w-0 max-w-full grid-cols-2 gap-3 text-sm sm:grid-cols-3 md:w-auto">
         <Metric label="Tiendas" value={numberFormatter.format(stores.length)} />
         <Metric label="Ventas" value={currencyFormatter.format(totalSales)} />
         <Metric label="Unidades" value={numberFormatter.format(totalUnits)} />
@@ -94,11 +94,13 @@ export function DashboardHeader({
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border border-zinc-200 bg-white px-3 py-2 shadow-sm">
+    <div className="min-w-0 rounded-lg border border-zinc-200 bg-white px-3 py-2 shadow-sm">
       <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
         {label}
       </p>
-      <p className="mt-1 text-base font-semibold text-zinc-950">{value}</p>
+      <p className="mt-1 break-words text-base font-semibold text-zinc-950">
+        {value}
+      </p>
     </div>
   );
 }

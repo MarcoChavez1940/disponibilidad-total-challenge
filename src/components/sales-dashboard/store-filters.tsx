@@ -16,11 +16,11 @@ export function StoreFilters({
   storeQuery,
 }: StoreFiltersProps) {
   return (
-    <div className="grid gap-3 rounded-lg border border-zinc-200 bg-white p-4 shadow-sm sm:grid-cols-[minmax(0,1fr)_220px]">
-      <label className="flex flex-col gap-2 text-sm font-medium text-zinc-700">
+    <div className="grid w-full min-w-0 max-w-full gap-3 rounded-lg border border-zinc-200 bg-white p-4 shadow-sm sm:grid-cols-[minmax(0,1fr)_220px]">
+      <label className="flex min-w-0 flex-col gap-2 text-sm font-medium text-zinc-700">
         Buscar por tienda
         <input
-          className="h-11 rounded-md border border-zinc-300 bg-white px-3 text-base text-zinc-950 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
+          className="h-11 w-full min-w-0 rounded-md border border-zinc-300 bg-white px-3 text-base text-zinc-950 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
           onChange={(event) => onStoreQueryChange(event.target.value)}
           placeholder="Nombre de tienda"
           type="search"
@@ -28,11 +28,11 @@ export function StoreFilters({
         />
       </label>
 
-      <label className="flex flex-col gap-2 text-sm font-medium text-zinc-700">
+      <label className="flex min-w-0 flex-col gap-2 text-sm font-medium text-zinc-700">
         Región
-        <span className="relative">
+        <span className="relative min-w-0">
           <select
-            className="h-11 w-full appearance-none rounded-md border border-zinc-300 bg-white pl-3 pr-10 text-base text-zinc-950 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
+            className="h-11 w-full min-w-0 appearance-none rounded-md border border-zinc-300 bg-white pl-3 pr-10 text-base text-zinc-950 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
             onChange={(event) => onRegionFilterChange(event.target.value)}
             value={regionFilter}
           >

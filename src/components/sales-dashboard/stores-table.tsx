@@ -29,14 +29,14 @@ export function StoresTable({
   storesState,
 }: StoresTableProps) {
   return (
-    <section className="overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm">
+    <section className="w-full min-w-0 max-w-full overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm [contain:layout_paint]">
       <div className="border-b border-zinc-200 px-4 py-3">
         <h2 className="text-lg font-semibold text-zinc-950">
           Listado de tiendas
         </h2>
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="w-full min-w-0 max-w-full overflow-x-auto overscroll-x-contain">
         <table className="w-full border-separate border-spacing-0 text-left text-sm sm:min-w-[640px]">
           <thead className="bg-zinc-100 text-xs font-semibold uppercase tracking-wide text-zinc-600">
             <tr>
