@@ -5,7 +5,7 @@
 https://disponibilidad-total-challenge.vercel.app/
 ```
 
-## Capturas de pantalla desktop y mobile
+## Capturas de pantalla desktop
 
 <img width="1470" height="784" alt="Captura de pantalla 2026-06-20 a la(s) 11 36 52 a m" src="https://github.com/user-attachments/assets/d81fa041-cb2c-4a07-89fd-376845a740aa" />
 
@@ -15,6 +15,7 @@ https://disponibilidad-total-challenge.vercel.app/
 
 <img width="1470" height="877" alt="Captura de pantalla 2026-06-20 a la(s) 11 38 05 a m" src="https://github.com/user-attachments/assets/cd93803c-8146-42e7-b25f-afd14617b5e5" />
 
+## Capturas de pantalla mobile
 
 | Tiendas | Productos | Analytics 1 | Analytics 2 |
 | :---: | :---: | :---: | :---: |
