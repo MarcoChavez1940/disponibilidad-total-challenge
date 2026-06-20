@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowDown, ArrowUp } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { ProductSale, StoreDetail, StoreSummary } from "@/lib/types";
 
@@ -509,8 +510,8 @@ export default function SalesDashboard() {
                       <tr>
                         {productColumns.map((column) => {
                           const isActive = column.key === sortKey;
-                          const directionLabel =
-                            sortDirection === "asc" ? "asc" : "desc";
+                          const SortIcon =
+                            sortDirection === "asc" ? ArrowUp : ArrowDown;
 
                           return (
                             <th
@@ -527,9 +528,21 @@ export default function SalesDashboard() {
                                 type="button"
                               >
                                 <span>{column.label}</span>
-                                <span className="w-8 text-xs text-zinc-500">
-                                  {isActive ? directionLabel : ""}
+                                <span
+                                  aria-hidden="true"
+                                  className="inline-flex h-4 w-4 items-center justify-center text-zinc-500"
+                                >
+                                  {isActive ? (
+                                    <SortIcon className="h-4 w-4" strokeWidth={2.5} />
+                                  ) : null}
                                 </span>
+                                {isActive ? (
+                                  <span className="sr-only">
+                                    {sortDirection === "asc"
+                                      ? "Orden ascendente"
+                                      : "Orden descendente"}
+                                  </span>
+                                ) : null}
                               </button>
                             </th>
                           );
