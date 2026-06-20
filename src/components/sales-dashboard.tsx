@@ -386,12 +386,14 @@ export default function SalesDashboard() {
 
                       return (
                         <tr
+                          aria-selected={isSelected}
                           className={
                             isSelected
-                              ? "group bg-emerald-50"
-                              : "group bg-white transition hover:bg-zinc-50"
+                              ? "group cursor-pointer bg-emerald-50"
+                              : "group cursor-pointer bg-white transition hover:bg-zinc-50"
                           }
                           key={store.id}
+                          onClick={() => handleSelectStore(store.id)}
                         >
                           <td
                             className={`sticky left-0 z-10 min-w-[140px] break-words border-r border-zinc-200 px-2 py-3 sm:min-w-[180px] sm:px-4 ${
@@ -402,7 +404,10 @@ export default function SalesDashboard() {
                           >
                             <button
                               className="text-left font-semibold text-zinc-950 underline-offset-4 hover:text-emerald-700 hover:underline focus:outline-none focus:ring-4 focus:ring-emerald-100"
-                              onClick={() => handleSelectStore(store.id)}
+                              onClick={(event) => {
+                                event.stopPropagation();
+                                handleSelectStore(store.id);
+                              }}
                               type="button"
                             >
                               {store.name}
