@@ -207,7 +207,7 @@ function StoreChartsList({
         </h2>
       </div>
 
-      <div className="max-h-[36rem] overflow-y-auto">
+      <div className="max-h-144 overflow-y-auto">
         {storesState === "loading" ? (
           <p className="px-4 py-8 text-center text-sm text-zinc-500">
             Consultando tiendas...

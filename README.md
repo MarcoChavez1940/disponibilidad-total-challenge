@@ -5,20 +5,30 @@
 https://disponibilidad-total-challenge.vercel.app/
 ```
 
-Dashboard web construido con Next.js, React, TypeScript y Tailwind CSS para consultar la disponibilidad y ventas de tiendas. La aplicacion permite revisar un listado de tiendas, filtrar por nombre y region, ordenar columnas, abrir el detalle de una tienda y analizar sus productos vendidos.
+Dashboard web construido con Next.js, React, TypeScript, Tailwind CSS y Recharts para consultar la disponibilidad y ventas de tiendas. La aplicacion permite revisar un listado de tiendas, filtrar por nombre y region, ordenar columnas, abrir el detalle de una tienda, analizar sus productos vendidos y exportar informacion en CSV.
 
-Tambien incluye un tablero de productos de todas las tiendas, accesible desde el menu del encabezado, para buscar productos por nombre o SKU y ordenar la informacion por tienda, ciudad, region, SKU, producto, categoria, unidades vendidas o venta total.
+Tambien incluye un tablero de productos de todas las tiendas y una seccion de Analytics con graficas de ventas. Ambas secciones son accesibles desde el menu de hamburguesa del encabezado.
+
+## Funcionalidades principales
+
+- Listado de tiendas con busqueda, filtro por region y ordenamiento ascendente/descendente por columnas.
+- Detalle de tienda con resumen de ventas, unidades, productos vendidos, busqueda por producto o SKU y alternancia entre Top 5 y todos los productos.
+- Tablero global de productos para consultar productos vendidos en todas las tiendas, con busqueda y ordenamiento por tienda, ciudad, region, SKU, producto, categoria, unidades vendidas o venta total.
+- Exportacion CSV de la vista actual del listado de tiendas, del detalle de una tienda y del tablero global de productos.
+- Seccion de graficas para analizar ventas totales por tienda y, al seleccionar una tienda, ventas por producto y ventas agrupadas por categoria.
 
 ## Componentes del proyecto
 
 - `SalesDashboard`: componente principal del tablero. Centraliza el estado, la carga de datos, filtros, seleccion de tienda, ordenamientos y cambio entre tableros.
-- `DashboardHeader`: encabezado superior con el titulo, metricas generales y menu para alternar entre el tablero de tiendas y el tablero de productos.
+- `DashboardHeader`: encabezado superior con el titulo, metricas generales y menu para alternar entre el tablero de tiendas, el tablero de productos y la seccion de graficas.
 - `StoreFilters`: controles para buscar tiendas por nombre y filtrar por region.
-- `StoresTable`: tabla del listado de tiendas. Permite ordenar por columnas, mantiene fija la columna de nombre y permite abrir el detalle al hacer clic en una fila.
-- `StoreDetailPanel`: panel de detalle de la tienda seleccionada. Muestra resumen de ventas, unidades, cantidad de productos y estados de carga/error.
+- `StoresTable`: tabla del listado de tiendas. Permite ordenar por columnas, mantiene fija la columna de nombre, permite abrir el detalle al hacer clic en una fila y exporta el listado visible a CSV.
+- `StoreDetailPanel`: panel de detalle de la tienda seleccionada. Muestra resumen de ventas, unidades, cantidad de productos, estados de carga/error y exportacion CSV de los productos visibles.
 - `ProductsTable`: tabla de productos dentro del detalle de tienda. Permite buscar por nombre o SKU, alternar entre Top 5 y todos los productos, y ordenar columnas.
-- `AllProductsDashboard`: tablero global de productos de todas las tiendas. Lista productos por tienda y permite busqueda y ordenamiento.
+- `AllProductsDashboard`: tablero global de productos de todas las tiendas. Lista productos por tienda, permite busqueda, ordenamiento y exportacion CSV de los productos visibles.
+- `StoreChartsDashboard`: seccion de Analytics y graficas. Muestra ventas totales por tienda, listado clicable de tiendas y graficas de detalle por producto y categoria.
 - `SortableTableHeader`: encabezado reutilizable para tablas ordenables, con iconos de orden ascendente y descendente.
+- `ExportCsvButton`: boton reutilizable con icono de descarga para exportar datos en formato CSV.
 
 ## Datos y APIs locales
 
