@@ -1,4 +1,5 @@
 import type { ProductSale, StoreDetail } from "@/lib/types";
+import { downloadCsv } from "@/lib/csv";
 import {
   currencyFormatter,
   numberFormatter,
@@ -6,6 +7,7 @@ import {
   type ProductSortKey,
   type SortDirection,
 } from "@/lib/sales-dashboard-utils";
+import { ExportCsvButton } from "@/components/sales-dashboard/export-csv-button";
 import { ProductsTable } from "@/components/sales-dashboard/products-table";
 
 type StoreDetailPanelProps = {
@@ -35,6 +37,42 @@ export function StoreDetailPanel({
   sortDirection,
   sortKey,
 }: StoreDetailPanelProps) {
+  function handleExportStoreDetail() {
+    if (!selectedStore) {
+      return;
+    }
+
+    downloadCsv(
+      `detalle-tienda-${selectedStore.id}.csv`,
+      [
+        "ID tienda",
+        "Tienda",
+        "Ciudad",
+        "Región",
+        "Ventas tienda",
+        "Unidades tienda",
+        "SKU",
+        "Producto",
+        "Categoría",
+        "Unidades vendidas",
+        "Venta total",
+      ],
+      products.map((product) => [
+        selectedStore.id,
+        selectedStore.name,
+        selectedStore.city,
+        selectedStore.region,
+        selectedStore.totalSales,
+        selectedStore.productsSold,
+        product.sku,
+        product.product,
+        product.category,
+        product.unitsSold,
+        product.totalSale,
+      ]),
+    );
+  }
+
   const detailMessage = !selectedStoreId
     ? {
         className: "text-zinc-500",
@@ -51,10 +89,17 @@ export function StoreDetailPanel({
 
   return (
     <section className="w-full min-w-0 max-w-full rounded-lg border border-zinc-200 bg-white shadow-sm">
-      <div className="border-b border-zinc-200 px-4 py-3">
+      <div className="flex items-center justify-between gap-3 border-b border-zinc-200 px-4 py-3">
         <h2 className="text-lg font-semibold text-zinc-950">
           Detalle de tienda
         </h2>
+        {detailState === "ready" && selectedStore ? (
+          <ExportCsvButton
+            ariaLabel="Exportar detalle de tienda visible en CSV"
+            disabled={products.length === 0}
+            onExport={handleExportStoreDetail}
+          />
+        ) : null}
       </div>
 
       {detailMessage ? (

@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { ExportCsvButton } from "@/components/sales-dashboard/export-csv-button";
 import { SortableTableHeader } from "@/components/sales-dashboard/sortable-table-header";
+import { downloadCsv } from "@/lib/csv";
 import {
   compareStoreProducts,
   currencyFormatter,
@@ -81,6 +83,34 @@ export function AllProductsDashboard() {
     );
   }
 
+  function handleExportProducts() {
+    downloadCsv(
+      "productos.csv",
+      [
+        "ID tienda",
+        "Tienda",
+        "Ciudad",
+        "Región",
+        "SKU",
+        "Producto",
+        "Categoría",
+        "Unidades vendidas",
+        "Venta total",
+      ],
+      visibleProducts.map((product) => [
+        product.storeId,
+        product.storeName,
+        product.city,
+        product.region,
+        product.sku,
+        product.product,
+        product.category,
+        product.unitsSold,
+        product.totalSale,
+      ]),
+    );
+  }
+
   return (
     <section className="flex w-full min-w-0 max-w-full flex-col gap-4">
       <div className="grid w-full min-w-0 max-w-full gap-3 rounded-lg border border-zinc-200 bg-white p-4 shadow-sm sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
@@ -94,13 +124,20 @@ export function AllProductsDashboard() {
             value={productQuery}
           />
         </label>
-        <div className="min-w-0 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm shadow-sm">
-          <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
-            Productos
-          </p>
-          <p className="mt-1 text-base font-semibold text-zinc-950">
-            {numberFormatter.format(visibleProducts.length)}
-          </p>
+        <div className="flex min-w-0 items-end gap-3">
+          <div className="min-w-0 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm shadow-sm">
+            <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
+              Productos
+            </p>
+            <p className="mt-1 text-base font-semibold text-zinc-950">
+              {numberFormatter.format(visibleProducts.length)}
+            </p>
+          </div>
+          <ExportCsvButton
+            ariaLabel="Exportar productos visibles en CSV"
+            disabled={visibleProducts.length === 0}
+            onExport={handleExportProducts}
+          />
         </div>
       </div>
 

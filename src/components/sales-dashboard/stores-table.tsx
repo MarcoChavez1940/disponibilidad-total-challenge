@@ -1,4 +1,6 @@
+import { ExportCsvButton } from "@/components/sales-dashboard/export-csv-button";
 import { SortableTableHeader } from "@/components/sales-dashboard/sortable-table-header";
+import { downloadCsv } from "@/lib/csv";
 import type { StoreSummary } from "@/lib/types";
 import {
   currencyFormatter,
@@ -28,12 +30,39 @@ export function StoresTable({
   stores,
   storesState,
 }: StoresTableProps) {
+  function handleExportStores() {
+    downloadCsv(
+      "tiendas.csv",
+      [
+        "ID",
+        "Nombre de tienda",
+        "Ciudad",
+        "Región",
+        "Ventas totales",
+        "Productos vendidos",
+      ],
+      stores.map((store) => [
+        store.id,
+        store.name,
+        store.city,
+        store.region,
+        store.totalSales,
+        store.productsSold,
+      ]),
+    );
+  }
+
   return (
     <section className="w-full min-w-0 max-w-full overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm contain-[layout_paint]">
-      <div className="border-b border-zinc-200 px-4 py-3">
+      <div className="flex items-center justify-between gap-3 border-b border-zinc-200 px-4 py-3">
         <h2 className="text-lg font-semibold text-zinc-950">
           Listado de tiendas
         </h2>
+        <ExportCsvButton
+          ariaLabel="Exportar listado de tiendas visible en CSV"
+          disabled={stores.length === 0}
+          onExport={handleExportStores}
+        />
       </div>
 
       <div className="w-full min-w-0 max-w-full overflow-x-auto overscroll-x-contain">
