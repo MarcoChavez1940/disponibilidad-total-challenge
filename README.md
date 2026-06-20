@@ -5,6 +5,22 @@
 https://disponibilidad-total-challenge.vercel.app/
 ```
 
+## Capturas de pantalla desktop y mobile
+
+<img width="1470" height="784" alt="Captura de pantalla 2026-06-20 a la(s) 11 36 52 a m" src="https://github.com/user-attachments/assets/d81fa041-cb2c-4a07-89fd-376845a740aa" />
+
+<img width="1470" height="879" alt="Captura de pantalla 2026-06-20 a la(s) 11 37 08 a m" src="https://github.com/user-attachments/assets/5953659b-a2d4-4ded-ae7b-609e35922a46" />
+
+<img width="1470" height="879" alt="Captura de pantalla 2026-06-20 a la(s) 11 37 31 a m" src="https://github.com/user-attachments/assets/fa83587b-8b7d-45f9-a2d8-373e9ab2d3b9" />
+
+<img width="1470" height="877" alt="Captura de pantalla 2026-06-20 a la(s) 11 38 05 a m" src="https://github.com/user-attachments/assets/cd93803c-8146-42e7-b25f-afd14617b5e5" />
+
+
+| Tiendas | Productos | Analytics 1 | Analytics 2 |
+| :---: | :---: | :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/fdc4f8f0-10fc-4f67-aa18-6af226605f6c" width="200"> | <img src="https://github.com/user-attachments/assets/314e7ded-4a0a-44f4-8de9-c881c639a845" width="200"> | <img src="https://github.com/user-attachments/assets/a5886451-507e-4f28-876e-9ec8963deaef" width="200"> | <img src="https://github.com/user-attachments/assets/e0c7a86b-9a3e-4853-863c-69eaad562851" width="200">
+
+
 Dashboard web construido con Next.js, React, TypeScript, Tailwind CSS y Recharts para consultar la disponibilidad y ventas de tiendas. La aplicacion permite revisar un listado de tiendas, filtrar por nombre y region, ordenar columnas, abrir el detalle de una tienda, analizar sus productos vendidos y exportar informacion en CSV.
 
 Tambien incluye un tablero de productos de todas las tiendas y una seccion de Analytics con graficas de ventas. Ambas secciones son accesibles desde el menu de hamburguesa del encabezado.
