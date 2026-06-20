@@ -104,7 +104,7 @@ export function AllProductsDashboard() {
         </div>
       </div>
 
-      <section className="w-full min-w-0 max-w-full overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm [contain:layout_paint]">
+      <section className="w-full min-w-0 max-w-full overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm contain-[layout_paint]">
         <div className="border-b border-zinc-200 px-4 py-3">
           <h2 className="text-lg font-semibold text-zinc-950">
             Productos de todas las tiendas
@@ -112,7 +112,7 @@ export function AllProductsDashboard() {
         </div>
 
         <div className="w-full min-w-0 max-w-full overflow-x-auto overscroll-x-contain">
-          <div className="min-w-[1080px]">
+          <div className="min-w-270">
             <table className="w-full border-collapse text-left text-sm">
               <thead className="bg-zinc-100 text-xs font-semibold uppercase tracking-wide text-zinc-600">
                 <tr>

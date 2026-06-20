@@ -55,8 +55,8 @@ export function ProductsTable({
         </label>
       </div>
 
-      <div className="w-full min-w-0 max-w-full overflow-x-auto overscroll-x-contain rounded-lg border border-zinc-200 [contain:layout_paint]">
-        <div className="min-w-[720px]">
+      <div className="w-full min-w-0 max-w-full overflow-x-auto overscroll-x-contain rounded-lg border border-zinc-200 contain-[layout_paint]">
+        <div className="min-w-180">
           <table className="w-full border-collapse text-left text-sm">
             <thead className="bg-zinc-100 text-xs font-semibold uppercase tracking-wide text-zinc-600">
               <tr>

@@ -59,7 +59,7 @@ export function StoreDetailPanel({
 
       {detailMessage ? (
         <div
-          className={`flex min-h-[460px] items-center justify-center px-6 text-center ${detailMessage.className}`}
+          className={`flex min-h-115 items-center justify-center px-6 text-center ${detailMessage.className}`}
         >
           {detailMessage.text}
         </div>
@@ -114,7 +114,7 @@ function PlainMetric({ label, value }: { label: string; value: string }) {
       <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
         {label}
       </p>
-      <p className="mt-1 break-words text-lg font-semibold text-zinc-950">
+      <p className="mt-1 wrap-break-word text-lg font-semibold text-zinc-950">
         {value}
       </p>
     </div>

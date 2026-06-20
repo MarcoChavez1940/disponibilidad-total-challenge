@@ -29,7 +29,7 @@ export function StoresTable({
   storesState,
 }: StoresTableProps) {
   return (
-    <section className="w-full min-w-0 max-w-full overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm [contain:layout_paint]">
+    <section className="w-full min-w-0 max-w-full overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-sm contain-[layout_paint]">
       <div className="border-b border-zinc-200 px-4 py-3">
         <h2 className="text-lg font-semibold text-zinc-950">
           Listado de tiendas
@@ -37,7 +37,7 @@ export function StoresTable({
       </div>
 
       <div className="w-full min-w-0 max-w-full overflow-x-auto overscroll-x-contain">
-        <table className="w-full border-separate border-spacing-0 text-left text-sm sm:min-w-[640px]">
+        <table className="w-full border-separate border-spacing-0 text-left text-sm sm:min-w-160">
           <thead className="bg-zinc-100 text-xs font-semibold uppercase tracking-wide text-zinc-600">
             <tr>
               {storeColumns.map((column) => {
@@ -48,7 +48,7 @@ export function StoresTable({
                   <SortableTableHeader
                     className={`px-2 py-3 sm:px-4 ${column.align ?? ""} ${
                       isSticky
-                        ? "sticky left-0 z-20 min-w-[140px] border-r border-zinc-200 bg-zinc-100 sm:min-w-[180px]"
+                        ? "sticky left-0 z-20 min-w-35 border-r border-zinc-200 bg-zinc-100 sm:min-w-45"
                         : ""
                     }`}
                     isActive={isActive}
@@ -111,7 +111,7 @@ export function StoresTable({
                   onClick={() => onSelectStore(store.id)}
                 >
                   <td
-                    className={`sticky left-0 z-10 min-w-[140px] break-words border-r border-zinc-200 px-2 py-3 sm:min-w-[180px] sm:px-4 ${
+                    className={`sticky left-0 z-10 min-w-35 wrap-break-word border-r border-zinc-200 px-2 py-3 sm:min-w-45 sm:px-4 ${
                       isSelected
                         ? "bg-emerald-50"
                         : "bg-white group-hover:bg-zinc-50"
@@ -128,7 +128,7 @@ export function StoresTable({
                       {store.name}
                     </button>
                   </td>
-                  <td className="break-words px-2 py-3 text-zinc-600 sm:px-4">
+                  <td className="wrap-break-word px-2 py-3 text-zinc-600 sm:px-4">
                     {store.city}
                   </td>
                   <td className="whitespace-nowrap px-2 py-3 text-center font-medium text-zinc-900 sm:px-4">
