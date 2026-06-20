@@ -79,6 +79,7 @@ export default function SalesDashboard() {
   const [productQuery, setProductQuery] = useState("");
   const [sortKey, setSortKey] = useState<SortKey>("unitsSold");
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
+  const [showTopProductsOnly, setShowTopProductsOnly] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -136,6 +137,7 @@ export default function SalesDashboard() {
         setProductQuery("");
         setSortKey("unitsSold");
         setSortDirection("desc");
+        setShowTopProductsOnly(true);
         setDetailState("ready");
       } catch (error) {
         if (error instanceof DOMException && error.name === "AbortError") {
@@ -177,8 +179,11 @@ export default function SalesDashboard() {
 
   const visibleProducts = useMemo(() => {
     const query = normalize(productQuery);
+    const products = showTopProductsOnly
+      ? topProducts
+      : selectedStore?.products ?? [];
 
-    return topProducts
+    return products
       .filter(
         (product) =>
           normalize(product.product).includes(query) ||
@@ -187,7 +192,14 @@ export default function SalesDashboard() {
       .sort((first, second) =>
         compareProducts(first, second, sortKey, sortDirection),
       );
-  }, [productQuery, sortDirection, sortKey, topProducts]);
+  }, [
+    productQuery,
+    selectedStore?.products,
+    showTopProductsOnly,
+    sortDirection,
+    sortKey,
+    topProducts,
+  ]);
 
   function handleProductSort(nextSortKey: SortKey) {
     if (nextSortKey === sortKey) {
@@ -478,9 +490,17 @@ export default function SalesDashboard() {
                       value={productQuery}
                     />
                   </label>
-                  <p className="text-sm font-medium text-zinc-600">
-                    Top 5 productos vendidos
-                  </p>
+                  <label className="flex h-11 items-center gap-3 rounded-md border border-zinc-300 bg-white px-3 text-sm font-medium text-zinc-700">
+                    <input
+                      checked={showTopProductsOnly}
+                      className="h-4 w-4 accent-emerald-700"
+                      onChange={(event) =>
+                        setShowTopProductsOnly(event.target.checked)
+                      }
+                      type="checkbox"
+                    />
+                    <span>Top 5 productos vendidos</span>
+                  </label>
                 </div>
 
                 <div className="overflow-x-auto rounded-lg border border-zinc-200">
@@ -523,7 +543,7 @@ export default function SalesDashboard() {
                             className="px-4 py-8 text-center text-zinc-500"
                             colSpan={5}
                           >
-                            No hay productos con esa búsqueda.
+                            No hay productos visibles con esa búsqueda.
                           </td>
                         </tr>
                       ) : null}
