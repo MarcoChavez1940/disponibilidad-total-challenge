@@ -319,10 +319,12 @@ export default function SalesDashboard() {
               </div>
 
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse text-left text-sm sm:min-w-[640px]">
+                <table className="w-full border-separate border-spacing-0 text-left text-sm sm:min-w-[640px]">
                   <thead className="bg-zinc-100 text-xs font-semibold uppercase tracking-wide text-zinc-600">
                     <tr>
-                      <th className="px-2 py-3 sm:px-4">Nombre de tienda</th>
+                      <th className="sticky left-0 z-20 min-w-[140px] border-r border-zinc-200 bg-zinc-100 px-2 py-3 sm:min-w-[180px] sm:px-4">
+                        Nombre de tienda
+                      </th>
                       <th className="px-2 py-3 sm:px-4">Ciudad</th>
                       <th className="px-2 py-3 text-right sm:px-4">
                         Ventas totales
@@ -373,12 +375,18 @@ export default function SalesDashboard() {
                         <tr
                           className={
                             isSelected
-                              ? "bg-emerald-50"
-                              : "bg-white transition hover:bg-zinc-50"
+                              ? "group bg-emerald-50"
+                              : "group bg-white transition hover:bg-zinc-50"
                           }
                           key={store.id}
                         >
-                          <td className="break-words px-2 py-3 sm:px-4">
+                          <td
+                            className={`sticky left-0 z-10 min-w-[140px] break-words border-r border-zinc-200 px-2 py-3 sm:min-w-[180px] sm:px-4 ${
+                              isSelected
+                                ? "bg-emerald-50"
+                                : "bg-white group-hover:bg-zinc-50"
+                            }`}
+                          >
                             <button
                               className="text-left font-semibold text-zinc-950 underline-offset-4 hover:text-emerald-700 hover:underline focus:outline-none focus:ring-4 focus:ring-emerald-100"
                               onClick={() => handleSelectStore(store.id)}
