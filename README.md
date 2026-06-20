@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Disponibilidad Total
 
-## Getting Started
+## Puedes probar la aplicación en vivo en la siguiente URL:
+```text
+https://disponibilidad-total-challenge.vercel.app/
+```
 
-First, run the development server:
+Dashboard web construido con Next.js, React, TypeScript y Tailwind CSS para consultar la disponibilidad y ventas de tiendas. La aplicacion permite revisar un listado de tiendas, filtrar por nombre y region, ordenar columnas, abrir el detalle de una tienda y analizar sus productos vendidos.
+
+Tambien incluye un tablero de productos de todas las tiendas, accesible desde el menu del encabezado, para buscar productos por nombre o SKU y ordenar la informacion por tienda, ciudad, region, SKU, producto, categoria, unidades vendidas o venta total.
+
+## Componentes del proyecto
+
+- `SalesDashboard`: componente principal del tablero. Centraliza el estado, la carga de datos, filtros, seleccion de tienda, ordenamientos y cambio entre tableros.
+- `DashboardHeader`: encabezado superior con el titulo, metricas generales y menu para alternar entre el tablero de tiendas y el tablero de productos.
+- `StoreFilters`: controles para buscar tiendas por nombre y filtrar por region.
+- `StoresTable`: tabla del listado de tiendas. Permite ordenar por columnas, mantiene fija la columna de nombre y permite abrir el detalle al hacer clic en una fila.
+- `StoreDetailPanel`: panel de detalle de la tienda seleccionada. Muestra resumen de ventas, unidades, cantidad de productos y estados de carga/error.
+- `ProductsTable`: tabla de productos dentro del detalle de tienda. Permite buscar por nombre o SKU, alternar entre Top 5 y todos los productos, y ordenar columnas.
+- `AllProductsDashboard`: tablero global de productos de todas las tiendas. Lista productos por tienda y permite busqueda y ordenamiento.
+- `SortableTableHeader`: encabezado reutilizable para tablas ordenables, con iconos de orden ascendente y descendente.
+
+## Datos y APIs locales
+
+Los datos del proyecto se leen desde `src/data/stores.json`.
+
+La aplicacion expone endpoints locales con Route Handlers de Next.js:
+
+- `GET /api/stores`: devuelve el resumen de tiendas.
+- `GET /api/stores/[id]`: devuelve el detalle de una tienda.
+- `GET /api/products`: devuelve productos de todas las tiendas.
+
+Actualmente no se requieren variables de entorno para ejecutar el proyecto.
+
+## Instalacion y ejecucion local
+
+Requisitos recomendados:
+
+- Node.js `20.9.0` o superior.
+- npm.
+
+Instalar dependencias:
+
+```bash
+npm install
+```
+
+Ejecutar en modo desarrollo:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir la aplicacion en:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Comandos utiles:
 
-## Learn More
+```bash
+npm run lint
+npm run build
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy en Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Este proyecto ya esta conectado a Vercel desde el repositorio de GitHub:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```text
+https://github.com/MarcoChavez1940/disponibilidad-total-challenge.git
+```
 
-## Deploy on Vercel
+La rama principal es `main`. Cada vez que se sube un commit a `main`, Vercel ejecuta automaticamente un nuevo deploy de produccion. Dichos commits solo pueden llegar a `main` a través de un Pull Request.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+No hay variables de entorno requeridas en este momento. Los archivos `.env*` y `.vercel` estan ignorados por Git para evitar subir secretos o configuracion local.
