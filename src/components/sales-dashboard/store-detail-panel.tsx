@@ -35,6 +35,20 @@ export function StoreDetailPanel({
   sortDirection,
   sortKey,
 }: StoreDetailPanelProps) {
+  const detailMessage = !selectedStoreId
+    ? {
+        className: "text-zinc-500",
+        text: "Selecciona una tienda del listado para consultar sus ventas.",
+      }
+    : detailState === "loading"
+      ? { className: "text-zinc-500", text: "Consultando detalle..." }
+      : detailState === "error"
+        ? {
+            className: "text-rose-700",
+            text: "No fue posible cargar el detalle de la tienda.",
+          }
+        : null;
+
   return (
     <section className="min-w-0 rounded-lg border border-zinc-200 bg-white shadow-sm">
       <div className="border-b border-zinc-200 px-4 py-3">
@@ -43,21 +57,11 @@ export function StoreDetailPanel({
         </h2>
       </div>
 
-      {!selectedStoreId ? (
-        <div className="flex min-h-[460px] items-center justify-center px-6 text-center text-zinc-500">
-          Selecciona una tienda del listado para consultar sus ventas.
-        </div>
-      ) : null}
-
-      {detailState === "loading" ? (
-        <div className="flex min-h-[460px] items-center justify-center px-6 text-center text-zinc-500">
-          Consultando detalle...
-        </div>
-      ) : null}
-
-      {detailState === "error" ? (
-        <div className="flex min-h-[460px] items-center justify-center px-6 text-center text-rose-700">
-          No fue posible cargar el detalle de la tienda.
+      {detailMessage ? (
+        <div
+          className={`flex min-h-[460px] items-center justify-center px-6 text-center ${detailMessage.className}`}
+        >
+          {detailMessage.text}
         </div>
       ) : null}
 

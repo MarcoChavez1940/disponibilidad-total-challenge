@@ -6,15 +6,25 @@ const storeData = stores as Store[];
 const sumBy = <T>(items: T[], getValue: (item: T) => number) =>
   items.reduce((total, item) => total + getValue(item), 0);
 
-export function getStoreSummaries(): StoreSummary[] {
-  return storeData.map(({ id, name, city, region, products }) => ({
+function getStoreSummary({
+  city,
+  id,
+  name,
+  products,
+  region,
+}: Store): StoreSummary {
+  return {
     id,
     name,
     city,
     region,
     totalSales: sumBy(products, (product) => product.totalSale),
     productsSold: sumBy(products, (product) => product.unitsSold),
-  }));
+  };
+}
+
+export function getStoreSummaries(): StoreSummary[] {
+  return storeData.map(getStoreSummary);
 }
 
 export function getStoreDetail(id: string): StoreDetail | null {
@@ -24,10 +34,8 @@ export function getStoreDetail(id: string): StoreDetail | null {
     return null;
   }
 
-  const [summary] = getStoreSummaries().filter((item) => item.id === id);
-
   return {
-    ...summary,
+    ...getStoreSummary(store),
     products: store.products,
   };
 }

@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { SortableTableHeader } from "@/components/sales-dashboard/sortable-table-header";
 import type { ProductSale } from "@/lib/types";
 import {
   currencyFormatter,
@@ -61,37 +61,17 @@ export function ProductsTable({
             <tr>
               {productColumns.map((column) => {
                 const isActive = column.key === sortKey;
-                const SortIcon =
-                  sortDirection === "asc" ? ArrowUp : ArrowDown;
 
                 return (
-                  <th
+                  <SortableTableHeader
                     className={`px-4 py-3 ${column.align ?? ""}`}
+                    isActive={isActive}
                     key={column.key}
-                  >
-                    <button
-                      className="inline-flex items-center gap-2 font-semibold transition hover:text-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-100"
-                      onClick={() => onSort(column.key)}
-                      type="button"
-                    >
-                      <span>{column.label}</span>
-                      <span
-                        aria-hidden="true"
-                        className="inline-flex h-4 w-4 items-center justify-center text-zinc-500"
-                      >
-                        {isActive ? (
-                          <SortIcon className="h-4 w-4" strokeWidth={2.5} />
-                        ) : null}
-                      </span>
-                      {isActive ? (
-                        <span className="sr-only">
-                          {sortDirection === "asc"
-                            ? "Orden ascendente"
-                            : "Orden descendente"}
-                        </span>
-                      ) : null}
-                    </button>
-                  </th>
+                    label={column.label}
+                    onSort={onSort}
+                    sortDirection={sortDirection}
+                    sortKey={column.key}
+                  />
                 );
               })}
             </tr>
