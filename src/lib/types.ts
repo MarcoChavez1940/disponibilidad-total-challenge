@@ -26,3 +26,10 @@ export type StoreSummary = {
 export type StoreDetail = StoreSummary & {
   products: ProductSale[];
 };
+
+export type StoreProductSale = ProductSale & {
+  storeId: string;
+  storeName: string;
+  city: string;
+  region: string;
+};

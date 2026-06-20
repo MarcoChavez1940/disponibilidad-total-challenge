@@ -1,5 +1,10 @@
 import stores from "@/data/stores.json";
-import type { Store, StoreDetail, StoreSummary } from "@/lib/types";
+import type {
+  Store,
+  StoreDetail,
+  StoreProductSale,
+  StoreSummary,
+} from "@/lib/types";
 
 const storeData = stores as Store[];
 
@@ -38,4 +43,16 @@ export function getStoreDetail(id: string): StoreDetail | null {
     ...getStoreSummary(store),
     products: store.products,
   };
+}
+
+export function getStoreProductSales(): StoreProductSale[] {
+  return storeData.flatMap(({ city, id, name, products, region }) =>
+    products.map((product) => ({
+      ...product,
+      city,
+      region,
+      storeId: id,
+      storeName: name,
+    })),
+  );
 }

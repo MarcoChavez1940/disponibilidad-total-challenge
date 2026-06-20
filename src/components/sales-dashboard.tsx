@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { AllProductsDashboard } from "@/components/sales-dashboard/all-products-dashboard";
 import { DashboardHeader } from "@/components/sales-dashboard/dashboard-header";
+import type { DashboardView } from "@/components/sales-dashboard/dashboard-header";
 import { StoreDetailPanel } from "@/components/sales-dashboard/store-detail-panel";
 import { StoreFilters } from "@/components/sales-dashboard/store-filters";
 import { StoresTable } from "@/components/sales-dashboard/stores-table";
@@ -18,6 +20,8 @@ import {
 import type { StoreDetail, StoreSummary } from "@/lib/types";
 
 export default function SalesDashboard() {
+  const [activeDashboard, setActiveDashboard] =
+    useState<DashboardView>("stores");
   const [stores, setStores] = useState<StoreSummary[]>([]);
   const [storesState, setStoresState] = useState<LoadingState>("idle");
   const [detailState, setDetailState] = useState<LoadingState>("idle");
@@ -240,43 +244,51 @@ export default function SalesDashboard() {
   return (
     <main className="min-h-screen bg-[#f6f7fb] text-zinc-950">
       <section className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
-        <DashboardHeader stores={stores} />
+        <DashboardHeader
+          activeDashboard={activeDashboard}
+          onDashboardChange={setActiveDashboard}
+          stores={stores}
+        />
 
-        <section className="grid gap-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,1.08fr)]">
-          <div className="flex min-w-0 flex-col gap-4">
-            <StoreFilters
-              onRegionFilterChange={handleRegionFilterChange}
-              onStoreQueryChange={handleStoreQueryChange}
-              regionFilter={regionFilter}
-              regions={regions}
-              storeQuery={storeQuery}
-            />
+        {activeDashboard === "stores" ? (
+          <section className="grid gap-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,1.08fr)]">
+            <div className="flex min-w-0 flex-col gap-4">
+              <StoreFilters
+                onRegionFilterChange={handleRegionFilterChange}
+                onStoreQueryChange={handleStoreQueryChange}
+                regionFilter={regionFilter}
+                regions={regions}
+                storeQuery={storeQuery}
+              />
 
-            <StoresTable
-              onSelectStore={handleSelectStore}
-              onSort={handleStoreSort}
+              <StoresTable
+                onSelectStore={handleSelectStore}
+                onSort={handleStoreSort}
+                selectedStoreId={selectedStoreId}
+                sortDirection={storeSortDirection}
+                sortKey={storeSortKey}
+                stores={filteredStores}
+                storesState={storesState}
+              />
+            </div>
+
+            <StoreDetailPanel
+              detailState={detailState}
+              onProductQueryChange={setProductQuery}
+              onProductSort={handleProductSort}
+              onShowTopProductsOnlyChange={setShowTopProductsOnly}
+              productQuery={productQuery}
+              products={visibleProducts}
+              selectedStore={selectedStore}
               selectedStoreId={selectedStoreId}
-              sortDirection={storeSortDirection}
-              sortKey={storeSortKey}
-              stores={filteredStores}
-              storesState={storesState}
+              showTopProductsOnly={showTopProductsOnly}
+              sortDirection={productSortDirection}
+              sortKey={productSortKey}
             />
-          </div>
-
-          <StoreDetailPanel
-            detailState={detailState}
-            onProductQueryChange={setProductQuery}
-            onProductSort={handleProductSort}
-            onShowTopProductsOnlyChange={setShowTopProductsOnly}
-            productQuery={productQuery}
-            products={visibleProducts}
-            selectedStore={selectedStore}
-            selectedStoreId={selectedStoreId}
-            showTopProductsOnly={showTopProductsOnly}
-            sortDirection={productSortDirection}
-            sortKey={productSortKey}
-          />
-        </section>
+          </section>
+        ) : (
+          <AllProductsDashboard />
+        )}
       </section>
     </main>
   );

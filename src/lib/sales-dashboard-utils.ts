@@ -1,8 +1,9 @@
-import type { ProductSale, StoreSummary } from "@/lib/types";
+import type { ProductSale, StoreProductSale, StoreSummary } from "@/lib/types";
 
 export type LoadingState = "idle" | "loading" | "ready" | "error";
 export type SortDirection = "asc" | "desc";
 export type ProductSortKey = keyof ProductSale;
+export type StoreProductSortKey = keyof StoreProductSale;
 export type StoreSortKey = keyof Pick<
   StoreSummary,
   "city" | "name" | "productsSold" | "totalSales"
@@ -32,6 +33,21 @@ export const productColumns: Array<{
   label: string;
   align?: string;
 }> = [
+  { key: "sku", label: "SKU" },
+  { key: "product", label: "Producto" },
+  { key: "category", label: "Categoría" },
+  { key: "unitsSold", label: "Unidades vendidas", align: "text-center" },
+  { key: "totalSale", label: "Venta total", align: "text-center" },
+];
+
+export const storeProductColumns: Array<{
+  key: StoreProductSortKey;
+  label: string;
+  align?: string;
+}> = [
+  { key: "storeName", label: "Tienda" },
+  { key: "city", label: "Ciudad" },
+  { key: "region", label: "Región" },
   { key: "sku", label: "SKU" },
   { key: "product", label: "Producto" },
   { key: "category", label: "Categoría" },
@@ -78,6 +94,15 @@ export function compareStores(
   first: StoreSummary,
   second: StoreSummary,
   sortKey: StoreSortKey,
+  direction: SortDirection,
+) {
+  return compareValues(first[sortKey], second[sortKey], direction);
+}
+
+export function compareStoreProducts(
+  first: StoreProductSale,
+  second: StoreProductSale,
+  sortKey: StoreProductSortKey,
   direction: SortDirection,
 ) {
   return compareValues(first[sortKey], second[sortKey], direction);
