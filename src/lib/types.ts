@@ -7,7 +7,7 @@ export type ProductSale = {
 };
 
 export type Store = {
-  id: string;
+  id: number;
   name: string;
   city: string;
   region: string;
@@ -15,7 +15,7 @@ export type Store = {
 };
 
 export type StoreSummary = {
-  id: string;
+  id: number;
   name: string;
   city: string;
   region: string;
@@ -28,7 +28,7 @@ export type StoreDetail = StoreSummary & {
 };
 
 export type StoreProductSale = ProductSale & {
-  storeId: string;
+  storeId: number;
   storeName: string;
   city: string;
   region: string;

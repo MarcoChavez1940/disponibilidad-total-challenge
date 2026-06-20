@@ -5,7 +5,8 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
-  const store = getStoreDetail(id);
+  const storeId = Number(id);
+  const store = Number.isInteger(storeId) ? getStoreDetail(storeId) : null;
 
   if (!store) {
     return Response.json({ message: "Tienda no encontrada" }, { status: 404 });

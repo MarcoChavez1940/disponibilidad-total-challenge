@@ -13,7 +13,7 @@ type StoreDetailPanelProps = {
   productQuery: string;
   products: ProductSale[];
   selectedStore: StoreDetail | null;
-  selectedStoreId: string | null;
+  selectedStoreId: number | null;
   showTopProductsOnly: boolean;
   sortDirection: SortDirection;
   sortKey: ProductSortKey;

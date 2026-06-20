@@ -12,10 +12,10 @@ import {
 type StoresTableProps = {
   stores: StoreSummary[];
   storesState: LoadingState;
-  selectedStoreId: string | null;
+  selectedStoreId: number | null;
   sortDirection: SortDirection;
   sortKey: StoreSortKey;
-  onSelectStore: (storeId: string) => void;
+  onSelectStore: (storeId: number) => void;
   onSort: (sortKey: StoreSortKey) => void;
 };
 

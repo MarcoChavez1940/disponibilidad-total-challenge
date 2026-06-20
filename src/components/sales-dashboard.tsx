@@ -25,7 +25,7 @@ export default function SalesDashboard() {
   const [stores, setStores] = useState<StoreSummary[]>([]);
   const [storesState, setStoresState] = useState<LoadingState>("idle");
   const [detailState, setDetailState] = useState<LoadingState>("idle");
-  const [selectedStoreId, setSelectedStoreId] = useState<string | null>(null);
+  const [selectedStoreId, setSelectedStoreId] = useState<number | null>(null);
   const [detailRefreshKey, setDetailRefreshKey] = useState(0);
   const [selectedStore, setSelectedStore] = useState<StoreDetail | null>(null);
   const [storeQuery, setStoreQuery] = useState("");
@@ -234,7 +234,7 @@ export default function SalesDashboard() {
     clearSelectedStoreWhenHidden(storeQuery, nextRegionFilter);
   }
 
-  function handleSelectStore(storeId: string) {
+  function handleSelectStore(storeId: number) {
     setSelectedStoreId(storeId);
     setDetailRefreshKey((current) => current + 1);
     setSelectedStore(null);

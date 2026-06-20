@@ -27,7 +27,7 @@ Los datos del proyecto se leen desde `src/data/stores.json`.
 La aplicacion expone endpoints locales con Route Handlers de Next.js:
 
 - `GET /api/stores`: devuelve el resumen de tiendas.
-- `GET /api/stores/[id]`: devuelve el detalle de una tienda.
+- `GET /api/stores/[id]`: devuelve el detalle de una tienda por ID numerico.
 - `GET /api/products`: devuelve productos de todas las tiendas.
 
 Actualmente no se requieren variables de entorno para ejecutar el proyecto.

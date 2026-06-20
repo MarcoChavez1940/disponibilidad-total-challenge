@@ -1,6 +1,6 @@
 [
   {
-    "id": "tienda-norte-merida",
+    "id": 1,
     "name": "Norte Merida",
     "city": "Merida",
     "region": "Sureste",
@@ -57,7 +57,7 @@
     ]
   },
   {
-    "id": "tienda-centro-cdmx",
+    "id": 2,
     "name": "Centro Reforma",
     "city": "Ciudad de Mexico",
     "region": "Centro",
@@ -114,7 +114,7 @@
     ]
   },
   {
-    "id": "tienda-occidente-guadalajara",
+    "id": 3,
     "name": "Andares Guadalajara",
     "city": "Guadalajara",
     "region": "Occidente",
@@ -171,7 +171,7 @@
     ]
   },
   {
-    "id": "tienda-norte-monterrey",
+    "id": 4,
     "name": "Cumbres Monterrey",
     "city": "Monterrey",
     "region": "Norte",
@@ -228,7 +228,7 @@
     ]
   },
   {
-    "id": "tienda-pacifico-tijuana",
+    "id": 5,
     "name": "Pacifico Tijuana",
     "city": "Tijuana",
     "region": "Norte",
@@ -285,7 +285,7 @@
     ]
   },
   {
-    "id": "tienda-sur-cancun",
+    "id": 6,
     "name": "Malecon Cancun",
     "city": "Cancun",
     "region": "Sureste",

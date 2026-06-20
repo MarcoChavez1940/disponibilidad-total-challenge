@@ -32,7 +32,7 @@ export function getStoreSummaries(): StoreSummary[] {
   return storeData.map(getStoreSummary);
 }
 
-export function getStoreDetail(id: string): StoreDetail | null {
+export function getStoreDetail(id: number): StoreDetail | null {
   const store = storeData.find((item) => item.id === id);
 
   if (!store) {
