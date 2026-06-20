@@ -74,6 +74,7 @@ export default function SalesDashboard() {
   const [storesState, setStoresState] = useState<LoadingState>("idle");
   const [detailState, setDetailState] = useState<LoadingState>("idle");
   const [selectedStoreId, setSelectedStoreId] = useState<string | null>(null);
+  const [detailRefreshKey, setDetailRefreshKey] = useState(0);
   const [selectedStore, setSelectedStore] = useState<StoreDetail | null>(null);
   const [storeQuery, setStoreQuery] = useState("");
   const [regionFilter, setRegionFilter] = useState("all");
@@ -153,7 +154,7 @@ export default function SalesDashboard() {
     loadStoreDetail();
 
     return () => controller.abort();
-  }, [selectedStoreId]);
+  }, [detailRefreshKey, selectedStoreId]);
 
   const regions = useMemo(
     () => Array.from(new Set(stores.map((store) => store.region))).sort(),
@@ -253,6 +254,7 @@ export default function SalesDashboard() {
 
   function handleSelectStore(storeId: string) {
     setSelectedStoreId(storeId);
+    setDetailRefreshKey((current) => current + 1);
     setSelectedStore(null);
     setDetailState("loading");
   }
