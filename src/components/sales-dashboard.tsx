@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { ArrowDown, ArrowUp, ChevronDown } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { ProductSale, StoreDetail, StoreSummary } from "@/lib/types";
 
@@ -364,20 +364,27 @@ export default function SalesDashboard() {
 
               <label className="flex flex-col gap-2 text-sm font-medium text-zinc-700">
                 Región
-                <select
-                  className="h-11 rounded-md border border-zinc-300 bg-white px-3 text-base text-zinc-950 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
-                  onChange={(event) =>
-                    handleRegionFilterChange(event.target.value)
-                  }
-                  value={regionFilter}
-                >
-                  <option value="all">Todas</option>
-                  {regions.map((region) => (
-                    <option key={region} value={region}>
-                      {region}
-                    </option>
-                  ))}
-                </select>
+                <span className="relative">
+                  <select
+                    className="h-11 w-full appearance-none rounded-md border border-zinc-300 bg-white pl-3 pr-10 text-base text-zinc-950 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-100"
+                    onChange={(event) =>
+                      handleRegionFilterChange(event.target.value)
+                    }
+                    value={regionFilter}
+                  >
+                    <option value="all">Todas</option>
+                    {regions.map((region) => (
+                      <option key={region} value={region}>
+                        {region}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown
+                    aria-hidden="true"
+                    className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-950"
+                    strokeWidth={2.25}
+                  />
+                </span>
               </label>
             </div>
 
