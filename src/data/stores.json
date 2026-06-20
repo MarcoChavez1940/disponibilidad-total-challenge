@@ -1,0 +1,344 @@
+[
+  {
+    "id": "tienda-norte-merida",
+    "name": "Norte Merida",
+    "city": "Merida",
+    "region": "Sureste",
+    "products": [
+      {
+        "sku": "CAF-001",
+        "product": "Cafe molido premium",
+        "category": "Abarrotes",
+        "unitsSold": 420,
+        "totalSale": 50400
+      },
+      {
+        "sku": "LIM-014",
+        "product": "Detergente concentrado",
+        "category": "Limpieza",
+        "unitsSold": 365,
+        "totalSale": 43800
+      },
+      {
+        "sku": "BEB-210",
+        "product": "Agua mineral 1L",
+        "category": "Bebidas",
+        "unitsSold": 540,
+        "totalSale": 21600
+      },
+      {
+        "sku": "PAN-102",
+        "product": "Pan integral familiar",
+        "category": "Panaderia",
+        "unitsSold": 318,
+        "totalSale": 19080
+      },
+      {
+        "sku": "LAT-047",
+        "product": "Leche deslactosada",
+        "category": "Lacteos",
+        "unitsSold": 289,
+        "totalSale": 24565
+      },
+      {
+        "sku": "BOT-320",
+        "product": "Shampoo herbal",
+        "category": "Cuidado personal",
+        "unitsSold": 166,
+        "totalSale": 28220
+      },
+      {
+        "sku": "SNK-088",
+        "product": "Barra de cereal",
+        "category": "Snacks",
+        "unitsSold": 248,
+        "totalSale": 14880
+      }
+    ]
+  },
+  {
+    "id": "tienda-centro-cdmx",
+    "name": "Centro Reforma",
+    "city": "Ciudad de Mexico",
+    "region": "Centro",
+    "products": [
+      {
+        "sku": "BEB-018",
+        "product": "Refresco cola 600ml",
+        "category": "Bebidas",
+        "unitsSold": 760,
+        "totalSale": 22800
+      },
+      {
+        "sku": "SNK-077",
+        "product": "Papas saladas",
+        "category": "Snacks",
+        "unitsSold": 625,
+        "totalSale": 25000
+      },
+      {
+        "sku": "CAF-011",
+        "product": "Cafe soluble",
+        "category": "Abarrotes",
+        "unitsSold": 312,
+        "totalSale": 37440
+      },
+      {
+        "sku": "PER-204",
+        "product": "Papel higienico 12 rollos",
+        "category": "Hogar",
+        "unitsSold": 280,
+        "totalSale": 42000
+      },
+      {
+        "sku": "LAT-022",
+        "product": "Yogurt natural",
+        "category": "Lacteos",
+        "unitsSold": 455,
+        "totalSale": 20475
+      },
+      {
+        "sku": "LIM-030",
+        "product": "Limpiador multiusos",
+        "category": "Limpieza",
+        "unitsSold": 198,
+        "totalSale": 17820
+      },
+      {
+        "sku": "PAN-040",
+        "product": "Conchas surtidas",
+        "category": "Panaderia",
+        "unitsSold": 512,
+        "totalSale": 15360
+      }
+    ]
+  },
+  {
+    "id": "tienda-occidente-guadalajara",
+    "name": "Andares Guadalajara",
+    "city": "Guadalajara",
+    "region": "Occidente",
+    "products": [
+      {
+        "sku": "BOT-108",
+        "product": "Crema corporal",
+        "category": "Cuidado personal",
+        "unitsSold": 236,
+        "totalSale": 33040
+      },
+      {
+        "sku": "BEB-145",
+        "product": "Jugo de naranja",
+        "category": "Bebidas",
+        "unitsSold": 398,
+        "totalSale": 23880
+      },
+      {
+        "sku": "SNK-121",
+        "product": "Galletas avena",
+        "category": "Snacks",
+        "unitsSold": 410,
+        "totalSale": 20500
+      },
+      {
+        "sku": "LAT-066",
+        "product": "Queso panela",
+        "category": "Lacteos",
+        "unitsSold": 202,
+        "totalSale": 32320
+      },
+      {
+        "sku": "HOG-019",
+        "product": "Servilletas premium",
+        "category": "Hogar",
+        "unitsSold": 344,
+        "totalSale": 17200
+      },
+      {
+        "sku": "CAF-050",
+        "product": "Capsulas de cafe",
+        "category": "Abarrotes",
+        "unitsSold": 188,
+        "totalSale": 37600
+      },
+      {
+        "sku": "LIM-099",
+        "product": "Suavizante floral",
+        "category": "Limpieza",
+        "unitsSold": 260,
+        "totalSale": 28600
+      }
+    ]
+  },
+  {
+    "id": "tienda-norte-monterrey",
+    "name": "Cumbres Monterrey",
+    "city": "Monterrey",
+    "region": "Norte",
+    "products": [
+      {
+        "sku": "CAR-305",
+        "product": "Carne para asar",
+        "category": "Carnes",
+        "unitsSold": 214,
+        "totalSale": 64200
+      },
+      {
+        "sku": "BEB-232",
+        "product": "Cerveza sin alcohol",
+        "category": "Bebidas",
+        "unitsSold": 390,
+        "totalSale": 31200
+      },
+      {
+        "sku": "SNK-233",
+        "product": "Totopos de maiz",
+        "category": "Snacks",
+        "unitsSold": 480,
+        "totalSale": 24000
+      },
+      {
+        "sku": "LAT-178",
+        "product": "Crema acida",
+        "category": "Lacteos",
+        "unitsSold": 276,
+        "totalSale": 17940
+      },
+      {
+        "sku": "LIM-212",
+        "product": "Jabon para trastes",
+        "category": "Limpieza",
+        "unitsSold": 348,
+        "totalSale": 27840
+      },
+      {
+        "sku": "PAN-156",
+        "product": "Pan para hamburguesa",
+        "category": "Panaderia",
+        "unitsSold": 322,
+        "totalSale": 19320
+      },
+      {
+        "sku": "HOG-411",
+        "product": "Bolsas resellables",
+        "category": "Hogar",
+        "unitsSold": 190,
+        "totalSale": 15200
+      }
+    ]
+  },
+  {
+    "id": "tienda-pacifico-tijuana",
+    "name": "Pacifico Tijuana",
+    "city": "Tijuana",
+    "region": "Norte",
+    "products": [
+      {
+        "sku": "BEB-301",
+        "product": "Agua saborizada",
+        "category": "Bebidas",
+        "unitsSold": 580,
+        "totalSale": 26100
+      },
+      {
+        "sku": "SNK-310",
+        "product": "Mix de nueces",
+        "category": "Snacks",
+        "unitsSold": 246,
+        "totalSale": 31980
+      },
+      {
+        "sku": "PER-112",
+        "product": "Desodorante roll-on",
+        "category": "Cuidado personal",
+        "unitsSold": 305,
+        "totalSale": 33550
+      },
+      {
+        "sku": "LAT-305",
+        "product": "Leche entera",
+        "category": "Lacteos",
+        "unitsSold": 410,
+        "totalSale": 28700
+      },
+      {
+        "sku": "HOG-202",
+        "product": "Toallas de cocina",
+        "category": "Hogar",
+        "unitsSold": 288,
+        "totalSale": 23040
+      },
+      {
+        "sku": "CAF-222",
+        "product": "Cafe americano frio",
+        "category": "Bebidas",
+        "unitsSold": 334,
+        "totalSale": 30060
+      },
+      {
+        "sku": "LIM-245",
+        "product": "Cloro gel",
+        "category": "Limpieza",
+        "unitsSold": 176,
+        "totalSale": 15840
+      }
+    ]
+  },
+  {
+    "id": "tienda-sur-cancun",
+    "name": "Malecon Cancun",
+    "city": "Cancun",
+    "region": "Sureste",
+    "products": [
+      {
+        "sku": "BEB-410",
+        "product": "Bebida isotónica",
+        "category": "Bebidas",
+        "unitsSold": 492,
+        "totalSale": 24600
+      },
+      {
+        "sku": "SNK-415",
+        "product": "Chips de platano",
+        "category": "Snacks",
+        "unitsSold": 430,
+        "totalSale": 25800
+      },
+      {
+        "sku": "PER-512",
+        "product": "Bloqueador solar",
+        "category": "Cuidado personal",
+        "unitsSold": 220,
+        "totalSale": 52800
+      },
+      {
+        "sku": "LAT-412",
+        "product": "Helado vainilla",
+        "category": "Lacteos",
+        "unitsSold": 318,
+        "totalSale": 28620
+      },
+      {
+        "sku": "PAN-218",
+        "product": "Pan dulce surtido",
+        "category": "Panaderia",
+        "unitsSold": 376,
+        "totalSale": 18800
+      },
+      {
+        "sku": "CAF-333",
+        "product": "Cafe latte listo",
+        "category": "Bebidas",
+        "unitsSold": 264,
+        "totalSale": 23760
+      },
+      {
+        "sku": "LIM-410",
+        "product": "Aromatizante citrico",
+        "category": "Limpieza",
+        "unitsSold": 158,
+        "totalSale": 14220
+      }
+    ]
+  }
+]
